@@ -5,9 +5,11 @@ import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { BounceView } from '@/components/animations/BounceView';
+import { useUser } from '@/hooks/state/UserProvider';
+
 
 export function BrainExperienceBar () {
-	const value = 10 // This value should be fetched from the API
+  const { state : { dailyExperience } } = useUser();
 
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.stepView}>
@@ -17,7 +19,7 @@ export function BrainExperienceBar () {
         </BounceView>
       </View>
 			<CircularProgress 
-				value={value} 
+				value={dailyExperience} 
 				radius={130} 
 				maxValue={100}
 				activeStrokeWidth={32} 
@@ -27,7 +29,14 @@ export function BrainExperienceBar () {
 				showProgressValue={false}
 				clockwise={false}
 			/>
-			<ThemedText type="title" lightColor={Colors.accent} darkColor={Colors.accent} style={styles.progressText}>{value} / 100 XP</ThemedText>
+			<ThemedText 
+        type="title"
+        lightColor={Colors.accent}
+        darkColor={Colors.accent}
+        style={styles.progressText}
+      >
+        {dailyExperience} / 100 XP
+      </ThemedText>
 		</ThemedView>
 	)
 }
