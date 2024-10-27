@@ -13,7 +13,7 @@ export function GameButtonLayout () {
       <ShakeView delayBetweenShakes={30000}>
         <GameButton gameType="matching" style={styles.upperGameButton} route='/matching'/>
       </ShakeView>
-			<GameButton gameType="matching" style={styles.lowerGameButton} route='/matching'/>
+			<GameButton gameType="matching" style={styles.lowerGameButton} route='/audio'/>
 		</ThemedView>
 	)
 }
