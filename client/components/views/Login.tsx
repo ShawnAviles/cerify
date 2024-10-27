@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Image, StyleSheet, Button } from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedView } from '../ThemedView';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -12,8 +12,8 @@ const Login = () => {
 
   return (
     <ThemedView lightColor='#FFFFFF' darkColor='#FFFFFF' style={styles.page}>
-      <Text>Hello Welcome Back</Text>
-      <Text>Welcome back please sign in</Text>
+      <Text style={styles.header}>Hello Welcome Back</Text>
+      <Text style={styles.subHeader}>Welcome back please sign in again</Text>
       
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -32,6 +32,7 @@ const Login = () => {
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
+                placeholderTextColor="#aaa"
               />
             </View>
             {errors.email && touched.email && <Text style={styles.errorText}>{errors.email}</Text>}
@@ -45,16 +46,21 @@ const Login = () => {
                 onBlur={handleBlur('password')}
                 value={values.password}
                 secureTextEntry
+                placeholderTextColor="#aaa"
               />
             </View>
             {errors.password && touched.password && <Text style={styles.errorText}>{errors.password}</Text>}
             
-            <Button onPress={handleSubmit} title="Sign In" />
+            <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
           </>
         )}
       </Formik>
       
-      <Text>Don't have an account? Register</Text>
+      <Text style={styles.footerText}>
+        Don't have an account? <Text style={styles.registerText}>Register</Text>
+      </Text>
     </ThemedView>
   );
 };
@@ -64,11 +70,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#FFFFFF',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 5,
+  },
+  subHeader: {
+    fontSize: 14,
+    color: '#888',
+    marginBottom: 20,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
     marginVertical: 10,
+    paddingBottom: 5,
+    width: '100%',
   },
   icon: {
     width: 24,
@@ -77,15 +100,41 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 5,
+    fontSize: 16,
+    color: '#000',
+  },
+  button: {
+    backgroundColor: '#4A90E2',
+    borderRadius: 25,
+    paddingVertical: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    width: '100%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   errorText: {
     color: 'red',
     fontSize: 12,
     marginBottom: 10,
+  },
+  footerText: {
+    fontSize: 14,
+    color: '#888',
+    marginTop: 20,
+  },
+  registerText: {
+    color: '#4A90E2',
+    fontWeight: 'bold',
   },
 });
 
