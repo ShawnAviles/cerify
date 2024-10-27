@@ -1,14 +1,12 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const insets = useSafeAreaInsets();
   return (
     <View style={styles.container}>
       <Tabs
@@ -18,13 +16,19 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           tabBarStyle: {
             display: "none"
-          },
+          }
         }}
       >
         <Tabs.Screen
-          name="matching"
+          name="changePassword"
           options={{
-            title: 'Matching',
+            title: 'Change Password',
+          }}
+        />
+        <Tabs.Screen
+          name="editProfile"
+          options={{
+            title: 'Edit Profile',
           }}
         />
       </Tabs>
