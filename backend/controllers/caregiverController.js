@@ -1,4 +1,4 @@
-import { Caregiver } from "../models/Cargiver.js";
+import { Caregiver } from "../models/Caregiver.js";
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -49,6 +49,17 @@ const updatePassword = async (req, res) => {
   }
 };
 
+const updateStats = async (req, res) => {
+  const { email, exercisesCompleted, totalXp, memoryLevel } = req.body;
+
+  try {
+    const updatedCaregiver = await Caregiver.updateStats(email, exercisesCompleted, totalXp, memoryLevel);
+    res.status(200).json({ email });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const getInfo = async (req, res) => {
   const { email } = req.body;
 
@@ -60,4 +71,4 @@ const getInfo = async (req, res) => {
   }
 };
 
-export default { login, signup, updateProfile, updatePassword, getInfo };
+export default { login, signup, updateProfile, updatePassword, updateStats, getInfo };

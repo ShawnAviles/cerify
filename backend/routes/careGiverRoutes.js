@@ -13,6 +13,6 @@ router.route("/updatePassword").post(caregiverController.updatePassword);
 
 router.route("/updateStats").post(caregiverController.updateStats);
 
-router.route("/getInfo").get(caregiverController.info);
+router.route("/getInfo").get(caregiverController.getInfo);
 
 export default router;
