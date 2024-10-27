@@ -3,36 +3,38 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import {format} from 'date-fns';
 import CircularProgress from 'react-native-circular-progress-indicator';
+import Login from '@/components/views/Login';
 
 export default function HomeScreen() {
 
   const value = 10 // This value should be fetched from the API
 
   return (
-    <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.page}>
-      <ThemedText type="default" style={styles.welcomeText}>Welcome, John!</ThemedText>
-      <ThemedText type="default" style={styles.todayText}>Today is</ThemedText>
-      <ThemedText type="title" style={styles.dateText}>{format(new Date(), "eeee, MMMM dd")}</ThemedText>
-      <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.stepView}>
-        <Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
-        <CircularProgress 
-          value={value} 
-          radius={130} 
-          maxValue={100}
-          activeStrokeWidth={32} 
-          inActiveStrokeWidth={32}
-          inActiveStrokeColor='#F2F2F2'
-          activeStrokeColor='#FF9924'
-          showProgressValue={false}
-          clockwise={false}
-        />
-        <ThemedText type="title" lightColor='#FF9924' darkColor='#FF9924' style={styles.progressText}>{value} / 100 XP</ThemedText>
-      </ThemedView>
-      <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.bottomSplitView}>
-        <ThemedText type="title">Daily Goal</ThemedText>
-        <ThemedText type="default">Complete 5 lessons</ThemedText>
-      </ThemedView>
-    </ThemedView>
+    <Login />
+    // <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.page}>
+    //   <ThemedText type="default" style={styles.welcomeText}>Welcome, John!</ThemedText>
+    //   <ThemedText type="default" style={styles.todayText}>Today is</ThemedText>
+    //   <ThemedText type="title" style={styles.dateText}>{format(new Date(), "eeee, MMMM dd")}</ThemedText>
+    //   <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.stepView}>
+    //     <Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
+    //     <CircularProgress 
+    //       value={value} 
+    //       radius={130} 
+    //       maxValue={100}
+    //       activeStrokeWidth={32} 
+    //       inActiveStrokeWidth={32}
+    //       inActiveStrokeColor='#F2F2F2'
+    //       activeStrokeColor='#FF9924'
+    //       showProgressValue={false}
+    //       clockwise={false}
+    //     />
+    //     <ThemedText type="title" lightColor='#FF9924' darkColor='#FF9924' style={styles.progressText}>{value} / 100 XP</ThemedText>
+    //   </ThemedView>
+    //   <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.bottomSplitView}>
+    //     <ThemedText type="title">Daily Goal</ThemedText>
+    //     <ThemedText type="default">Complete 5 lessons</ThemedText>
+    //   </ThemedView>
+    // </ThemedView>
   );
 }
 
