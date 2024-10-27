@@ -7,7 +7,7 @@ router.route("/login").post(userController.login);
 
 router.route("/signup").post(userController.signup);
 
-router.route("/updateProfile").post(userController.update);
+router.route("/updateProfile").post(userController.updateProfile);
 
 router.route("/updatePassword").post(userController.updatePassword);
 
