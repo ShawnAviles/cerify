@@ -1,14 +1,19 @@
 import mongoose from "mongoose";
 
+// User Schema
 const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
       required: true,
+      unique: true,
+      index: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
+      match: /.+\@.+\..+/,
     },
     password: {
       type: String,
@@ -22,31 +27,39 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    caregiver: {
-      firstName: {
-        type: String,
-        required: true,
-      },
-      lastName: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        required: true,
-      },
+    caregiverID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Caregiver",
+      required: false,
     },
-    scores: {
-      matching: {
-        firstScore: Number,
-        scoreHistory: [Number],
-        runningAverage: Number,
-        runningTotalAttempts: Number,
+    stats: {
+      exercisesCompleted: {
+        type: Number,
+        default: 0,
+        min: 0,
       },
+      totalXp: {
+        type: Number,
+        default: 0,
+        min: 0,
+      },
+      memoryLevel: {
+        type: Number,
+        default: 1,
+        min: 1,
+      },
+      // TODO: Add other stats as needed
     },
-    goals: [String],
+    goals: {
+      type: [String],
+      default: [],
+    },
+    difficulty: {
+      type: Number,
+      default: 1,
+    }
   },
   { timestamps: true }
 );
 
-export default mongoose.model("User", UserSchema);
+export const User = mongoose.model("User", UserSchema);
