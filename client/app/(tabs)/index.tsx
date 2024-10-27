@@ -1,19 +1,22 @@
-import { Image, StyleSheet} from 'react-native';
+import { Button, Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { GameButton } from '@/components/GameButton';
 import {format} from 'date-fns';
 import CircularProgress from 'react-native-circular-progress-indicator';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Colors } from '@/constants/Colors';
 
 export default function HomeScreen() {
 
   const value = 10 // This value should be fetched from the API
 
   return (
-    <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.page}>
+    <SafeAreaView style={styles.page} edges={['right', 'left', 'top']}>
       <ThemedText type="default" style={styles.welcomeText}>Welcome, John!</ThemedText>
       <ThemedText type="default" style={styles.todayText}>Today is</ThemedText>
       <ThemedText type="title" style={styles.dateText}>{format(new Date(), "eeee, MMMM dd")}</ThemedText>
-      <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.stepView}>
+      <ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.stepView}>
         <Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
         <CircularProgress 
           value={value} 
@@ -22,43 +25,56 @@ export default function HomeScreen() {
           activeStrokeWidth={32} 
           inActiveStrokeWidth={32}
           inActiveStrokeColor='#F2F2F2'
-          activeStrokeColor='#FF9924'
+          activeStrokeColor={Colors.accent}
           showProgressValue={false}
           clockwise={false}
         />
-        <ThemedText type="title" lightColor='#FF9924' darkColor='#FF9924' style={styles.progressText}>{value} / 100 XP</ThemedText>
+        <ThemedText type="title" lightColor={Colors.accent} darkColor={Colors.accent} style={styles.progressText}>{value} / 100 XP</ThemedText>
       </ThemedView>
-      <ThemedView lightColor='#88CBFF' darkColor='#88CBFF' style={styles.bottomSplitView}>
-        <ThemedText type="title">Daily Goal</ThemedText>
-        <ThemedText type="default">Complete 5 lessons</ThemedText>
+      <ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.bottomSplitView}>
+        <GameButton gameType="matching" style={styles.lowerGameButton}/>
+        <GameButton gameType="matching" style={styles.upperGameButton}/>
+        <GameButton gameType="matching" style={styles.lowerGameButton}/>
       </ThemedView>
-    </ThemedView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 10,
+    paddingBottom: 0,
+    marginBottom: 0,
+    backgroundColor: Colors.primary,
+    color: Colors.black
   },
   welcomeText: {
-    marginBottom: 24,
+    marginBottom: 16,
     fontWeight: 'bold',
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
+    color: Colors.black
   },
   todayText: {
     marginBottom: 8,
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
+    color: Colors.black
+  
   }, 
   dateText: {
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
+    color: Colors.black
   },
   brainImage: {
     width: "50%",
     position: 'absolute',
     top: '50%', // Center vertically
     left: '50%', // Center horizontally
-    transform: [{ translateX: -102 }, { translateY: -130 }], 
+    transform: [{ translateX: -100 }, { translateY: -130 }], 
+    shadowColor: Colors.white,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 30,
   },
   stepView: {
     display: 'flex',
@@ -70,22 +86,33 @@ const styles = StyleSheet.create({
   }, 
   bottomSplitView: {
     display: 'flex',
+    flexDirection: 'row',
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: Colors.white,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
+    shadowColor: '#444',
+    shadowOffset: {width: 0, height: -20},
+    shadowOpacity: 0.2,
+    shadowRadius: 8,   
   }, 
   progressText: {
     textShadowColor: 'black',
     textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 8,
+    textShadowRadius: 5,
     width: "100%",
     textAlign: 'center',
     marginTop: 8,
-    paddingVertical: 8,
+    paddingVertical: 4
+  },
+  lowerGameButton: {
+    marginTop: 75
+  },
+  upperGameButton: {
+    marginBottom: 75
   }
 });
