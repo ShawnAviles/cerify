@@ -6,6 +6,7 @@ import { Colors } from '@/constants/Colors';
 import { ShakeView } from '@/components/animations/ShakeView';
 
 export function GameButtonLayout () {
+  
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.bottomSplitView}>
 			<GameButton gameType="focus" style={styles.lowerGameButton} route='/whack'/>

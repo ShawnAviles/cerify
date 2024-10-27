@@ -57,6 +57,15 @@ export default function TabLayout() {
             ),
           }}
         />
+        <Tabs.Screen
+          name="patients"
+          options={{
+            title: 'Patients',
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon name={"bag-add-outline"} iconFamily='Ionicons' color={color} />
+            ),
+          }}
+        />
       </Tabs>
     </View>
   );
