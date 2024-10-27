@@ -1,22 +1,23 @@
 import React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { ThemedView } from '../ThemedView';
+import { ThemedView } from '../../components/ThemedView';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-const Login = () => {
+export default function Signup () {
   const validationSchema = Yup.object().shape({
+    username: Yup.string().min(3, 'Username must be at least 3 characters').required('Username is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
   });
 
   return (
     <ThemedView lightColor='#FFFFFF' darkColor='#FFFFFF' style={styles.page}>
-      <Text style={styles.header}>Hello Welcome Back</Text>
-      <Text style={styles.subHeader}>Welcome back please sign in again</Text>
+      <Text style={styles.header}>Create Account</Text>
+      <Text style={styles.subHeader}>Sign up to get started</Text>
       
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ username: '', email: '', password: '' }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
@@ -24,6 +25,19 @@ const Login = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
+            <View style={styles.inputContainer}>
+              <Image source={require("@/assets/images/email.png")} style={styles.icon} />
+              <TextInput
+                placeholder="Username"
+                style={styles.input}
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
+                value={values.username}
+                placeholderTextColor="#aaa"
+              />
+            </View>
+            {errors.username && touched.username && <Text style={styles.errorText}>{errors.username}</Text>}
+            
             <View style={styles.inputContainer}>
               <Image source={require("@/assets/images/email.png")} style={styles.icon} />
               <TextInput
@@ -51,16 +65,16 @@ const Login = () => {
             </View>
             {errors.password && touched.password && <Text style={styles.errorText}>{errors.password}</Text>}
             
-            <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
+            <TouchableOpacity onPress={() => handleSubmit()} style={styles.button}>
+              <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
           </>
         )}
       </Formik>
       
       <Text style={styles.footerText}>
-        Don't have an account? <Text style={styles.registerText}>Register</Text>
-        {/* TODO: Register should navigate to "Register Page" */}
+        Already have an account? <Text style={styles.registerText}>Login</Text>
+        {/* TODO: Login should navigate to "Login Page" */}
       </Text>
     </ThemedView>
   );
@@ -138,5 +152,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default Login;
