@@ -1,14 +1,19 @@
 import mongoose from "mongoose";
 
+// User Schema
 const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
       required: true,
+      unique: true,
+      index: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
+      match: /.+\@.+\..+/,
     },
     password: {
       type: String,
@@ -23,38 +28,50 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
     caregiverID: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Caregiver",
       required: false,
     },
     stats: {
       exercisesCompleted: {
         type: Number,
-        required: false,
+        default: 0,
+        min: 0,
       },
       totalXp: {
         type: Number,
-        required: false
+        default: 0,
+        min: 0,
       },
       memoryLevel: {
         type: Number,
-        required: false,
-      }
-      // TODO: Other 3 stats tbd
+        default: 1,
+        min: 1,
+      },
+      // TODO: Add other stats as needed
     },
-    goals: [String],
+    goals: {
+      type: [String],
+      default: [],
+    },
   },
   { timestamps: true }
 );
 
-const caregiverSchema = new mongoose.Schema(
+// Caregiver Schema
+const CaregiverSchema = new mongoose.Schema(
   {
     username: {
       type: String,
       required: true,
+      unique: true,
+      index: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
+      match: /.+\@.+\..+/,
     },
     password: {
       type: String,
@@ -68,9 +85,15 @@ const caregiverSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    patients: [String],
+    patients: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
-)
+);
 
-export default mongoose.model("User", UserSchema);
+export const User = mongoose.model("User", UserSchema);
+export const Caregiver = mongoose.model("Caregiver", CaregiverSchema);
