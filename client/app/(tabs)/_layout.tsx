@@ -13,8 +13,16 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarShowLabel: false, // Hide tab titles
+        tabBarStyle: {
+          backgroundColor: 'black', // Set navbar color to black
+          width: '85%',
+          height: 60,
+          alignSelf: 'center',
+          borderRadius: 20,
+        },
       }}>
-        <Tabs.Screen
+      <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
