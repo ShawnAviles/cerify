@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '50%', // Center vertically
     left: '50%', // Center horizontally
-    transform: [{ translateX: -100 }, { translateY: -130 }], 
+    transform: [{ translateX: -102 }, { translateY: -130 }], 
   },
   stepView: {
     display: 'flex',
