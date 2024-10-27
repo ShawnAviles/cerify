@@ -69,13 +69,10 @@ export function Matching() {
         }
     }, [matches]);
 
-    const msg = `Matches: ${matches} / ${cards.length / 2}`;
-
     return (
         <View style={styles.container}>
-            <Text style={styles.header1}>GeeksforGeeks</Text>
-            <Text style={styles.header2}>Memory Pair Game using React-Native</Text>
-            <Text style={styles.matchText}>{msg}</Text>
+            <Text style={styles.header}>Matching Game</Text>
+            <Text style={styles.description}>Match each pair of cards based on their symbols</Text>
             {gameWon ? (
                 <View style={styles.winMessage}>
                     <View style={styles.winMessageContent}>
@@ -116,20 +113,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'white',
     },
-    header1: {
+    header: {
         fontSize: 36,
         marginBottom: 10,
-        color: 'green',
     },
-    header2: {
+    description: {
         fontSize: 18,
         marginBottom: 20,
-        color: 'black',
-        fontWeight: 'bold',
-    },
-    matchText: {
-        fontSize: 18,
-        color: 'black',
     },
     grid: {
         flexDirection: 'row',
