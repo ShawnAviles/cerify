@@ -1,8 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Text, Image, StyleSheet } from 'react-native';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { Colors } from '@/constants/Colors';
-
 
 export function GameButton({gameType, style} : {gameType: string, style?: any}) {
 	return (
@@ -26,6 +25,8 @@ export function GameButton({gameType, style} : {gameType: string, style?: any}) 
 					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
 				: gameType === 'memory' ?
 					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
+				: gameType === 'quit' ? 
+					<Text style={styles.quitButtonText}>Quit</Text>
 				: <Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
 			}
 		</ThemedButton>
@@ -35,5 +36,10 @@ export function GameButton({gameType, style} : {gameType: string, style?: any}) 
 const styles = StyleSheet.create({
   gameButtonIcon: {
     width: 50,
-  }
+  },
+	quitButtonText: {
+		color: '#333',
+		fontWeight: 'bold',
+		fontSize: 24,
+	}
 });
