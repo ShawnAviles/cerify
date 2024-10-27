@@ -92,7 +92,7 @@ export default function Matching() {
               <View style={styles.winMessage}>
                   <View style={styles.winMessageContent}>
                       <Text style={styles.winText}>Congratulations!</Text>
-                      <Text style={styles.winText}>You Won!</Text>
+                      <Text style={styles.winTextXP}>You Won 20XP!</Text>
                   </View>
                   <ThemedButton
                       name="rick"
@@ -173,6 +173,12 @@ const styles = StyleSheet.create({
     winText: {
       fontSize: 32,
       color: Colors.black,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    winTextXP: {
+      fontSize: 30,
+      color: Colors.accent,
       fontWeight: 'bold',
       textAlign: 'center',
     },
