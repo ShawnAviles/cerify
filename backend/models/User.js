@@ -54,46 +54,12 @@ const UserSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
-  },
-  { timestamps: true }
-);
-
-// Caregiver Schema
-const CaregiverSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: /.+\@.+\..+/,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    patients: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    difficulty: {
+      type: Number,
+      default: 1,
+    }
   },
   { timestamps: true }
 );
 
 export const User = mongoose.model("User", UserSchema);
-export const Caregiver = mongoose.model("Caregiver", CaregiverSchema);
