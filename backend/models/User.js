@@ -135,6 +135,4 @@ UserSchema.statics.getInfo = async function (email) {
   throw new Error("No such user exists under this email");
 };
 
-UserSchema
-
 export const User = mongoose.model("User", UserSchema);

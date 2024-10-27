@@ -71,4 +71,6 @@ const getInfo = async (req, res) => {
   }
 };
 
+
+
 export default { login, signup, updateProfile, updatePassword, updateStats, getInfo };
