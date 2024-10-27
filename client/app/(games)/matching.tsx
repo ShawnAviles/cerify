@@ -10,6 +10,7 @@ import {
 import { gameCardsFunction } from '@/utils/machingUtils';
 import { MatchingCard } from '@/components/MatchingCard';
 import { GameButton } from '@/components/GameButton';
+import { Href, router } from 'expo-router';
 
 export default function Matching() {
   const [difficulty, setDifficulty] = useState(1); // TODO: Should call database for difficulty
@@ -67,13 +68,13 @@ export default function Matching() {
       }
   }, [matches]);
 
-  const handleRestart = () => {
+  const handleLeave = () => {
       setCards(gameCardsFunction(difficulty));
       setSelectedCards([]);
       setMatches(0);
       setWinMessage(new Animated.Value(0));
       setGameWon(false);
-      // TODO: Should route to home page
+      router.push('/' as Href);
   };
 
   return (
@@ -88,7 +89,7 @@ export default function Matching() {
                       <Text style={styles.winText}>Congratulations!</Text>
                       <Text style={styles.winText}>You Won!</Text>
                   </View>
-                  <Button title="Leave" onPress={handleRestart} />
+                  <Button title="Leave" onPress={handleLeave} />
               </View>
           ) : (
               <>
@@ -104,7 +105,7 @@ export default function Matching() {
                       ))}
                   </View>
                   <View>
-                    <GameButton gameType="quit" style={styles.quitButton}/>
+                    <GameButton gameType="quit" style={styles.quitButton} route='/'/>
                   </View>
               </>
           )}

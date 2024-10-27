@@ -4,7 +4,6 @@ import { ThemedButton } from 'react-native-really-awesome-button';
 import { Colors } from '@/constants/Colors';
 import { Href, router } from 'expo-router';
 
-
 export function GameButton({gameType, style, route} : {gameType: string, style?: any, route?: string}) {
 	return (
 		<ThemedButton 
