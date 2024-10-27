@@ -2,9 +2,10 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { Colors } from '@/constants/Colors';
+import { Href, router } from 'expo-router';
 
 
-export function GameButton({gameType, style} : {gameType: string, style?: any}) {
+export function GameButton({gameType, style, route} : {gameType: string, style?: any, route?: string}) {
 	return (
 		<ThemedButton 
 			name="rick" 
@@ -18,6 +19,7 @@ export function GameButton({gameType, style} : {gameType: string, style?: any}) 
 			backgroundColor={Colors.secondary}
 			backgroundDarker={Colors.shadow}
 			style={style}
+      onPress={() => router.push(route as Href)}
 		>
 			{
 				gameType === 'matching' ? 
