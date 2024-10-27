@@ -4,14 +4,12 @@ import {
     Text,
     Button,
     StyleSheet,
-    TouchableOpacity,
     Animated,
     Easing
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { randomArrFunction, gameCardsFunction } from '@/utils/machingUtils';
+import { gameCardsFunction } from '@/utils/machingUtils';
+import { MatchingCard } from '@/components/MatchingCard';
 
-// TODO: Componentize and break into different files
 // TODO: Match Styles on Figma
 // TODO: Add a timer
 // TODO: Add Flipping Animation
@@ -98,15 +96,12 @@ export function Matching() {
             ) : (
                 <View style={styles.grid}>
                     {cards.map((card) => (
-                        <TouchableOpacity
-                            key={card.id}
-                            style={[styles.card, card.isFlipped && styles.cardFlipped]}
-                            onPress={() => cardClickFunction(card)}
-                        >
-                            {card.isFlipped ? (
-                                <Icon name={card.symbol} size={40} style={styles.cardIcon} />
-                            ) : null}
-                        </TouchableOpacity>
+                        <MatchingCard 
+                          id={card.id} 
+                          isFlipped={card.isFlipped} 
+                          cardClickFunction={() => cardClickFunction(card)}
+                          symbol={card.symbol}
+                        />
                     ))}
                 </View>
             )}
@@ -140,23 +135,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
-    },
-    card: {
-        width: 80,
-        height: 80,
-        margin: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#FFD700',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: 'black',
-    },
-    cardFlipped: {
-        backgroundColor: 'white',
-    },
-    cardIcon: {
-        color: 'blue',
     },
     winMessage: {
         position: 'absolute',
