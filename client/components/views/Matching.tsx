@@ -88,7 +88,7 @@ export function Matching() {
                       <Text style={styles.winText}>Congratulations!</Text>
                       <Text style={styles.winText}>You Won!</Text>
                   </View>
-                  <Button title="Restart" onPress={handleRestart} />
+                  <Button title="Leave" onPress={handleRestart} />
               </View>
           ) : (
               <>
