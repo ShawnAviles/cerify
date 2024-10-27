@@ -1,22 +1,38 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform, View, Text, ScrollView, ProgressBarAndroid } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
+import { StyleSheet, Image, View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { format } from 'date-fns';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
 import { Bar } from 'react-native-progress';
 import { BounceView } from '@/components/animations/BounceView';
+import { useUser } from '@/hooks/state/UserProvider';
 import React from 'react';
 
 export default function StatsPage() {
   const [bestPerforming, setBestPerforming] = React.useState('Short-term Memory');
+  const { 
+    state: { 
+      firstName,
+      lastName,
+      joinDate,
+      skills : {
+        shortTermMemory, 
+        concentration, 
+        problemSolving, 
+        numericalReasoning, 
+        visualSpatial,
+      }, 
+      statistics : {
+        exercisesCompleted, 
+        lifetimeXP, 
+        memoryLevel, 
+        cognitiveLevel,
+        focusLevel,
+        netImprovement,
+      },  
+    } 
+  } = useUser();
 
-  // values would be fetched from the API
-  const shortTermMemory = 0.8;
-  const concentration = 0.6;
-  const problemSolving = 0.7;
-  const numericalReasoning = 0.4;
-  const visualSpatial = 0.9;
 
   React.useEffect(() => {
     // get max of the best performing skill
@@ -48,8 +64,8 @@ export default function StatsPage() {
 
       {/* User Information */}
       <View style={styles.userInfo}>
-        <Text style={styles.userName}>John Doe</Text>
-        <Text style={styles.userJoined}>Joined since 25th August 2024</Text>
+        <Text style={styles.userName}>{firstName} {lastName}</Text>
+        <Text style={styles.userJoined}>First join {format(new Date(joinDate), "eeee, MMMM dd, yyyy")}</Text>
       </View>
 
       {/* Skills Progress */}
@@ -65,12 +81,12 @@ export default function StatsPage() {
       {/* Stats Grid */}
       <Text style={styles.header2Text}>My Recap</Text>
       <View style={styles.statsGrid}>
-        <StatCard icon="graduation-cap" label="Exercises Completed" value="176" />
-        <StatCard icon="bolt" label="Total Lifetime XP" value="1879" />
-        <StatCard icon="clone" label="Memory Level" value="10" />
-        <StatCard icon="bullseye" label="Cognitive Level" value="26" />
-        <StatCard icon="folder" label="Focus Level" value="54" />
-        <StatCard icon="brain" label="Net Improvement" value="+10%" />
+        <StatCard icon="graduation-cap" label="Exercises Completed" value={exercisesCompleted.toString()} />
+        <StatCard icon="bolt" label="Total Lifetime XP" value={lifetimeXP.toString()} />
+        <StatCard icon="clone" label="Memory Level" value={memoryLevel.toString()} />
+        <StatCard icon="bullseye" label="Cognitive Level" value={cognitiveLevel.toString()} />
+        <StatCard icon="folder" label="Focus Level" value={focusLevel.toString()} />
+        <StatCard icon="brain" label="Net Improvement" value={netImprovement} />
       </View>
     </ScrollView>
   );

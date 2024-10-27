@@ -3,11 +3,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors } from '@/constants/Colors';
 import { StyleSheet } from 'react-native';
+import { useUser } from '@/hooks/state/UserProvider';
 
 export function WelcomeHeader () {
+  const { state : { firstName } } = useUser();
+
 	return (
 		<SafeAreaView style={styles.page} edges={['right', 'left', 'top']}>
-			<ThemedText type="default" style={styles.welcomeText}>Welcome, John!</ThemedText>
+			<ThemedText type="default" style={styles.welcomeText}>Welcome, {firstName}!</ThemedText>
 			<ThemedText type="default" style={styles.todayText}>Today is</ThemedText>
 			<ThemedText type="title" style={styles.dateText}>{format(new Date(), "eeee, MMMM dd")}</ThemedText>
 		</SafeAreaView>

@@ -13,6 +13,7 @@ import { GameButton } from '@/components/GameButton';
 import { Href, router } from 'expo-router';
 import { Colors } from '@/constants/Colors';
 import { ThemedButton } from 'react-native-really-awesome-button';
+import { useUser } from '@/hooks/state/UserProvider';
 
 export default function Matching() {
   const [difficulty, setDifficulty] = useState(1); // TODO: Should call database for difficulty
@@ -21,6 +22,7 @@ export default function Matching() {
   const [matches, setMatches] = useState(0);
   const [winMessage, setWinMessage] = useState(new Animated.Value(0));
   const [gameWon, setGameWon] = useState(false);
+  const { dispatch } = useUser();
 
   const cardClickFunction = (card : any) => {
       if (!gameWon && selectedCards.length < 2 && !card.isFlipped) {
@@ -55,6 +57,7 @@ export default function Matching() {
   };
 
   const handleWin = () => {
+      dispatch({ type: 'INCREMENT_DAILY_EXPERIENCE', payload: 10 });
       Animated.timing(winMessage, {
           toValue: 1,
           duration: 1000,
