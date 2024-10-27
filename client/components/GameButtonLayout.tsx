@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     shadowColor: '#444',
     shadowOffset: {width: 0, height: -20},
     shadowOpacity: 0.2,
-    shadowRadius: 8,   
+    shadowRadius: 8,
+    elevation: 1,
   },
   lowerGameButton: {
     marginTop: 75
