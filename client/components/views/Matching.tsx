@@ -4,7 +4,6 @@ import {
     Text,
     Button,
     StyleSheet,
-    Pressable,
     Animated,
     Easing,
 } from 'react-native';
@@ -74,6 +73,7 @@ export function Matching() {
       setMatches(0);
       setWinMessage(new Animated.Value(0));
       setGameWon(false);
+      // TODO: Should route to home page
   };
 
   return (
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
       zIndex: 1,
     },
     winMessageContent: {
-      backgroundColor: 'rgba(255, 215, 0, 0.7)',
+      backgroundColor: '#88CBFF',
       padding: 20,
       borderRadius: 10,
       alignItems: 'center',
