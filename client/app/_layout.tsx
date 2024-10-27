@@ -33,6 +33,7 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name='(games)' options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(settings)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
       </UserProvider>
