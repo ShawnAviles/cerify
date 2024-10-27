@@ -60,6 +60,7 @@ const Login = () => {
       
       <Text style={styles.footerText}>
         Don't have an account? <Text style={styles.registerText}>Register</Text>
+        {/* TODO: Register should navigate to "Register Page" */}
       </Text>
     </ThemedView>
   );
@@ -70,11 +71,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 60,
     backgroundColor: '#FFFFFF',
   },
   header: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#000',
     marginBottom: 5,
