@@ -101,10 +101,12 @@ const styles = StyleSheet.create({
     padding: 24,
     display: 'flex',
     flexDirection: 'column',
+    backgroundColor: Colors.white,
   },
   container: {
     flex: 1,
     paddingHorizontal: 30,
+    backgroundColor: Colors.white,
   },
   header: {
     alignItems: 'center',
