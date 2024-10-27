@@ -1,16 +1,21 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { BounceView } from '@/components/animations/BounceView';
 
 export function BrainExperienceBar () {
 	const value = 10 // This value should be fetched from the API
 
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.stepView}>
-			<Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
+      <View style={styles.brainContainer}>
+        <BounceView style={styles.bounceContainer}>
+          <Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
+        </BounceView>
+      </View>
 			<CircularProgress 
 				value={value} 
 				radius={130} 
@@ -28,16 +33,28 @@ export function BrainExperienceBar () {
 }
 
 const styles = StyleSheet.create({
-  brainImage: {
-    width: "50%",
+  brainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'absolute',
-    top: '50%', // Center vertically
-    left: '50%', // Center horizontally
-    transform: [{ translateX: -97 }, { translateY: -130 }], 
+    width: '100%',
+    height: '100%',
+    paddingHorizontal: 'auto',
+    paddingBottom: 44,
+  },
+  bounceContainer: {
     shadowColor: Colors.white,
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
     shadowRadius: 30,
+  },
+  brainImage: {
+    width: 200,
+    shadowColor: Colors.white,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 30,
+    elevation: 1,
   },
   stepView: {
     display: 'flex',
