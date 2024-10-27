@@ -61,13 +61,14 @@ const updateStats = async (req, res) => {
 };
 
 const getInfo = async (req, res) => {
+  console.log(req)
   const { email } = req.body;
 
   try {
     const caregiver = await Caregiver.getInfo(email);
-    res.status(200).json({ caregiver });
+    return res.status(200).json({ caregiver });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
 
