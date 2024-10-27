@@ -10,9 +10,11 @@ export function GameButtonLayout () {
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.bottomSplitView}>
 			<GameButton gameType="matching" style={styles.lowerGameButton}/>
-      <ShakeView delayBetweenShakes={30000}>
-        <GameButton gameType="matching" style={styles.upperGameButton}/>
-      </ShakeView>
+      <Link href={"/matching" as Href}>
+        <ShakeView delayBetweenShakes={30000}>
+          <GameButton gameType="matching" style={styles.upperGameButton}/>
+        </ShakeView>
+      </Link>
 			<GameButton gameType="matching" style={styles.lowerGameButton}/>
 		</ThemedView>
 	)
