@@ -2,30 +2,71 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
 
 export default function Patients() {
-  const [patients, setPatients] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [patients, setPatients] = useState([
+    {
+        id: 1,
+        firstName: "John",
+        lastName: "Doe",
+        stats: {
+            exercisesCompleted: 10,
+            totalXp: 1000,
+            memoryLevel: 3,
+        },
+        difficulty: 2
+    }, 
+    {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        stats: {
+            exercisesCompleted: 5,
+            totalXp: 500,
+            memoryLevel: 2,
+        },
+        difficulty: 1
+    }]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState(1);
 
-  useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("http://localhost:3000/caregiver/getInfo"); // Ensure your API is accessible
-        if (!response.ok) {
-          throw new Error("Failed to fetch patients");
+  const setSelectedDifficulty = (patient, level : number) => {
+    let id  = patient.id;
+    let updatedPatients = patients.map((p) => {
+        if (p.id === id) {
+            return { ...p, difficulty: level };
         }
-        const data = await response.json();
-        setPatients(data);
-      } catch (e) {
-        setError(e);
-      } finally {
-        setLoading(false);
-      }
-    };
+        return p;
+    })
+    setPatients(updatedPatients);
+  }
 
-    fetchPatients();
-  }, []);
+  // FIXME: This is a placeholder for the actual API call
+//   useEffect(() => {
+//     const fetchPatients = async () => {
+//       try {
+//         setLoading(true);
+//         const response = await fetch("http://localhost:3000/caregiver/getInfo", {
+//             method: "GET",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 email: "caregiver1@example.com"
+//             }),
+//         }); // Ensure your API is accessible
+//         if (!response.ok) {
+//           throw new Error("Failed to fetch patients");
+//         }
+//         const data = await response.json();
+//         setPatients(data);
+//       } catch (e) {
+//         setError(e);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchPatients();
+//   }, []);
 
   if (loading) {
     return (
@@ -73,14 +114,14 @@ export default function Patients() {
                   key={level}
                   style={[
                     styles.difficultyButton,
-                    selectedDifficulty === level && styles.difficultyButtonSelected,
+                    patient.difficulty === level && styles.difficultyButtonSelected,
                   ]}
-                  onPress={() => setSelectedDifficulty(level)}
+                  onPress={() => setSelectedDifficulty(patient, level)}
                 >
                   <Text
                     style={[
                       styles.difficultyText,
-                      selectedDifficulty === level && styles.difficultyTextSelected,
+                      patient.difficulty === level && styles.difficultyTextSelected,
                     ]}
                   >
                     {level}
