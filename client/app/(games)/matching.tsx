@@ -11,16 +11,18 @@ import { gameCardsFunction } from '@/utils/machingUtils';
 import { MatchingCard } from '@/components/MatchingCard';
 import { GameButton } from '@/components/GameButton';
 import { Href, router } from 'expo-router';
+import { Colors } from '@/constants/Colors';
+import { ThemedButton } from 'react-native-really-awesome-button';
 
 export default function Matching() {
   const [difficulty, setDifficulty] = useState(1); // TODO: Should call database for difficulty
   const [cards, setCards] = useState(gameCardsFunction(difficulty));
-  const [selectedCards, setSelectedCards] = useState([]);
+  const [selectedCards, setSelectedCards] = useState<any[]>([]);
   const [matches, setMatches] = useState(0);
   const [winMessage, setWinMessage] = useState(new Animated.Value(0));
   const [gameWon, setGameWon] = useState(false);
 
-  const cardClickFunction = (card) => {
+  const cardClickFunction = (card : any) => {
       if (!gameWon && selectedCards.length < 2 && !card.isFlipped) {
           const updatedSelectedCards = [...selectedCards, card];
           const updatedCards = cards.map((c) =>
@@ -89,7 +91,18 @@ export default function Matching() {
                       <Text style={styles.winText}>Congratulations!</Text>
                       <Text style={styles.winText}>You Won!</Text>
                   </View>
-                  <Button title="Leave" onPress={handleLeave} />
+                  <ThemedButton
+                      name="rick"
+                      type="primary"
+                      borderWidth={2}
+                      borderColor={Colors.shadow}
+                      backgroundColor={Colors.secondary}
+                      backgroundDarker={Colors.shadow}
+                      style={styles.quitButton}
+                      onPress={handleLeave}
+                  >
+                    <Text>Return Home</Text>
+                  </ThemedButton>
               </View>
           ) : (
               <>
@@ -124,15 +137,17 @@ const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
       marginVertical: 10,
+      paddingHorizontal: 50,
     },
     description: {
       fontSize: 16,
       color: '#333',
       marginBottom: 20,
       textAlign: 'center',
+      paddingHorizontal: 50,
     },
     grid: {
-      width: '80%',
+      width: '85%',
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-around',
@@ -147,14 +162,15 @@ const styles = StyleSheet.create({
       zIndex: 1,
     },
     winMessageContent: {
-      backgroundColor: '#88CBFF',
-      padding: 20,
-      borderRadius: 10,
+      backgroundColor: Colors.primary,
+      padding: 30,
+      borderRadius: 20,
       alignItems: 'center',
     },
     winText: {
-      fontSize: 24,
-      color: 'white',
+      fontSize: 32,
+      color: Colors.black,
+      fontWeight: 'bold',
       textAlign: 'center',
     },
     quitButton: {

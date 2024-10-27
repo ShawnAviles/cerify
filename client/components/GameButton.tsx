@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: 50,
   },
 	quitButtonText: {
-		color: '#333',
+		color: Colors.black,
 		fontWeight: 'bold',
 		fontSize: 24,
 	}
