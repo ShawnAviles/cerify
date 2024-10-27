@@ -6,12 +6,26 @@ const randomArrFunction = (arr : any[]) => {
   return arr;
 };
 
-export const gameCardsFunction = () => {
-  const icons = [
+// 1 - easy, 2 - medium, 3 - hard
+export const gameCardsFunction = (difficulty : number = 2) => {
+  const fullIcons = [
       'paw', 'paw', 'heart', 'heart', 'tree', 'tree',
-      'star', 'star', 'bell', 'bell', 'gift', 'gift'
+      'star', 'star', 'bell', 'bell', 'gift', 'gift',
+      'cloud', 'cloud', 'apple', 'apple'
   ];
+
+  let icons = []
+
+  if (difficulty === 1) {
+    icons = fullIcons.slice(0, 8);
+  } else if (difficulty === 2) {
+    icons = fullIcons.slice(0, 12);
+  } else {
+    icons = fullIcons;
+  }
+
   const randomIcons = randomArrFunction(icons);
+
   return randomIcons.map((icon, index) => ({
       id: index,
       symbol: icon,

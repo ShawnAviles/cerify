@@ -4,18 +4,16 @@ import {
     Text,
     Button,
     StyleSheet,
+    Pressable,
     Animated,
-    Easing
+    Easing,
 } from 'react-native';
 import { gameCardsFunction } from '@/utils/machingUtils';
 import { MatchingCard } from '@/components/MatchingCard';
 
-// TODO: Match Styles on Figma
-// TODO: Add a timer
-// TODO: Add Flipping Animation
-
 export function Matching() {
-    const [cards, setCards] = useState(gameCardsFunction());
+    const [difficulty, setDifficulty] = useState(1); // TODO: Should call database for difficulty
+    const [cards, setCards] = useState(gameCardsFunction(difficulty));
     const [selectedCards, setSelectedCards] = useState([]);
     const [matches, setMatches] = useState(0);
     const [winMessage, setWinMessage] = useState(new Animated.Value(0));
@@ -35,7 +33,7 @@ export function Matching() {
                     setMatches(matches + 1);
                     setSelectedCards([]);
                     if (matches + 1 === cards.length / 2) {
-                        geekWinGameFunction();
+                        handleWin();
                         setGameWon(true);
                     }
                 } else {
@@ -47,13 +45,13 @@ export function Matching() {
                         );
                         setSelectedCards([]);
                         setCards(flippedCards);
-                    }, 1000);
+                    }, 500);
                 }
             }
         }
     };
 
-    const geekWinGameFunction = () => {
+    const handleWin = () => {
         Animated.timing(winMessage, {
             toValue: 1,
             duration: 1000,
@@ -64,47 +62,56 @@ export function Matching() {
 
     useEffect(() => {
         if (matches === cards.length / 2) {
-            geekWinGameFunction();
+            handleWin();
             setGameWon(true);
         }
     }, [matches]);
 
+    const handleRestart = () => {
+        setCards(gameCardsFunction(difficulty));
+        setSelectedCards([]);
+        setMatches(0);
+        setWinMessage(new Animated.Value(0));
+        setGameWon(false);
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Matching Game</Text>
-            <Text style={styles.description}>Match each pair of cards based on their symbols</Text>
+            <Text style={styles.description}>
+                Match each pair of cards based on their symbols
+            </Text>
             {gameWon ? (
                 <View style={styles.winMessage}>
                     <View style={styles.winMessageContent}>
-                        <Text style={styles.winText}>Congratulations Geek!</Text>
+                        <Text style={styles.winText}>Congratulations!</Text>
                         <Text style={styles.winText}>You Won!</Text>
                     </View>
-                    <Button
-                        title="Restart"
-                        onPress={() => {
-                            setCards(gameCardsFunction());
-                            setSelectedCards([]);
-                            setMatches(0);
-                            setWinMessage(new Animated.Value(0));
-                            setGameWon(false);
-                        }}
-                    />
+                    <Button title="Restart" onPress={handleRestart} />
                 </View>
             ) : (
-                <View style={styles.grid}>
-                    {cards.map((card) => (
-                        <MatchingCard 
-                          id={card.id} 
-                          isFlipped={card.isFlipped} 
-                          cardClickFunction={() => cardClickFunction(card)}
-                          symbol={card.symbol}
-                        />
-                    ))}
-                </View>
+                <>
+                    <View style={styles.grid}>
+                        {cards.map((card) => (
+                            <MatchingCard
+                                key={card.id}
+                                id={card.id}
+                                isFlipped={card.isFlipped}
+                                cardClickFunction={() => cardClickFunction(card)}
+                                symbol={card.symbol}
+                            />
+                        ))}
+                    </View>
+                    <View style={styles.quitContainer}>
+                        <Pressable style={styles.quitButton} onPress={() => console.log('Quit')}>
+                            <Text style={styles.quitButtonText}>QUIT</Text>
+                        </Pressable>
+                    </View>
+                </>
             )}
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -114,17 +121,21 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     header: {
-        fontSize: 36,
-        marginBottom: 10,
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginVertical: 10,
     },
     description: {
-        fontSize: 18,
+        fontSize: 16,
+        color: '#333',
         marginBottom: 20,
+        textAlign: 'center',
     },
     grid: {
+        width: '80%',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
     },
     winMessage: {
         position: 'absolute',
@@ -142,7 +153,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     winText: {
-        fontSize: 36,
+        fontSize: 24,
         color: 'white',
+        textAlign: 'center',
+    },
+    quitContainer: {
+        position: 'absolute',
+        bottom: 40,
+        alignItems: 'center',
+    },
+    quitButton: {
+        backgroundColor: '#000',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    quitButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        marginRight: 5,
     },
 });

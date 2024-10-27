@@ -18,12 +18,12 @@ export function MatchingCard({id, isFlipped, cardClickFunction, symbol}) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFD700',
+    backgroundColor: '#88CBFF',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'black',
