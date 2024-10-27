@@ -3,12 +3,15 @@ import { StyleSheet } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { GameButton } from '@/components/GameButton';
 import { Colors } from '@/constants/Colors';
+import { Href, Link } from 'expo-router';
 
 export function GameButtonLayout () {
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.bottomSplitView}>
 			<GameButton gameType="matching" style={styles.lowerGameButton}/>
-			<GameButton gameType="matching" style={styles.upperGameButton}/>
+      <Link href={"/matching" as Href}>
+			  <GameButton gameType="matching" style={styles.upperGameButton}/>
+      </Link>
 			<GameButton gameType="matching" style={styles.lowerGameButton}/>
 		</ThemedView>
 	)
