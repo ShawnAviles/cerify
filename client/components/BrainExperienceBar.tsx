@@ -4,13 +4,16 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { BounceView } from '@/components/animations/BounceView';
 
 export function BrainExperienceBar () {
 	const value = 10 // This value should be fetched from the API
 
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.stepView}>
-			<Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
+      <BounceView style={styles.brainImage}>
+        <Image source={require("@/assets/images/brain.png")} style={styles.brainImage} resizeMode='contain'/>
+      </BounceView>
 			<CircularProgress 
 				value={value} 
 				radius={130} 
@@ -29,10 +32,10 @@ export function BrainExperienceBar () {
 
 const styles = StyleSheet.create({
   brainImage: {
-    width: "50%",
+    width: "70%",
     position: 'absolute',
-    top: '50%', // Center vertically
-    left: '50%', // Center horizontally
+    top: '52%', // Center vertically
+    left: '30%', // Center horizontally
     transform: [{ translateX: -97 }, { translateY: -130 }], 
     shadowColor: Colors.white,
     shadowOffset: {width: 0, height: 0},

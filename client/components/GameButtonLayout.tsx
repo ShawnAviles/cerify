@@ -3,12 +3,15 @@ import { StyleSheet } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { GameButton } from '@/components/GameButton';
 import { Colors } from '@/constants/Colors';
+import { ShakeView } from '@/components/animations/ShakeView';
 
 export function GameButtonLayout () {
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.bottomSplitView}>
 			<GameButton gameType="matching" style={styles.lowerGameButton}/>
-			<GameButton gameType="matching" style={styles.upperGameButton}/>
+      <ShakeView delayBetweenShakes={30000}>
+        <GameButton gameType="matching" style={styles.upperGameButton}/>
+      </ShakeView>
 			<GameButton gameType="matching" style={styles.lowerGameButton}/>
 		</ThemedView>
 	)
