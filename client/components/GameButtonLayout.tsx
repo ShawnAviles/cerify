@@ -4,7 +4,6 @@ import { ThemedView } from '@/components/ThemedView';
 import { GameButton } from '@/components/GameButton';
 import { Colors } from '@/constants/Colors';
 import { ShakeView } from '@/components/animations/ShakeView';
-import { Href, Link } from 'expo-router';
 
 export function GameButtonLayout () {
 	return (
