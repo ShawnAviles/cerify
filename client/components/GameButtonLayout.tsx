@@ -8,7 +8,7 @@ import { ShakeView } from '@/components/animations/ShakeView';
 export function GameButtonLayout () {
 	return (
 		<ThemedView lightColor={Colors.primary} darkColor={Colors.primary} style={styles.bottomSplitView}>
-			<GameButton gameType="matching" style={styles.lowerGameButton} route='/matching'/>
+			<GameButton gameType="focus" style={styles.lowerGameButton} route='/whack'/>
       <ShakeView delayBetweenShakes={30000}>
         <GameButton gameType="matching" style={styles.upperGameButton} route='/matching'/>
       </ShakeView>

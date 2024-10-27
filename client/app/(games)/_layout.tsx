@@ -27,6 +27,12 @@ export default function TabLayout() {
             title: 'Matching',
           }}
         />
+        <Tabs.Screen
+          name="whack"
+          options={{
+            title: 'Whack-a-Mole',
+          }}
+        />
       </Tabs>
     </View>
   );

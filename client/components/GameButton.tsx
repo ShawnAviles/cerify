@@ -23,8 +23,8 @@ export function GameButton({gameType, style, route} : {gameType: string, style?:
 			{
 				gameType === 'matching' ? 
 					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
-				: gameType === 'sorting' ?
-					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
+				: gameType === 'focus' ?
+					<Image source={require('@/assets/images/focus.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
 				: gameType === 'memory' ?
 					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
 				: gameType === 'quit' ? 
