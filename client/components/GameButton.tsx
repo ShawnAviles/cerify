@@ -3,8 +3,9 @@ import { Text, Image, StyleSheet } from 'react-native';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { Colors } from '@/constants/Colors';
 import { Href, router } from 'expo-router';
+import { useUser } from '@/hooks/state/UserProvider';
 
-export function GameButton({gameType, style, route} : {gameType: string, style?: any, route?: string}) {
+export function GameButton({gameType, style, route, difficulty = 1} : {gameType: string, style?: any, route?: string, difficulty?: number}) {	
 	return (
 		<ThemedButton 
 			name="rick" 
@@ -21,12 +22,12 @@ export function GameButton({gameType, style, route} : {gameType: string, style?:
       onPress={() => router.push(route as Href)}
 		>
 			{
-				gameType === 'matching' ? 
+				(gameType === 'matching' && difficulty === 1)  ? 
 					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
 				: gameType === 'focus' ?
 					<Image source={require('@/assets/images/focus.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
-				: gameType === 'memory' ?
-					<Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
+				: (gameType === 'matching-2' || difficulty === 2) ?
+					<Image source={require('@/assets/images/card-3.png')} style={styles.gameButtonIcon} resizeMode='contain'/>
 				: gameType === 'quit' ? 
 					<Text style={styles.quitButtonText}>Quit</Text>
 				: <Image source={require('@/assets/images/matching-icon.png')} style={styles.gameButtonIcon} resizeMode='contain'/>

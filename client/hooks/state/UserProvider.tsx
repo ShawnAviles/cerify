@@ -5,6 +5,7 @@ const initialState = {
   username: 'johndoerocks',
   dailyExperience: 0,
   joinDate: '2021-01-01',
+  difficulty: 1,
   email: 'johndoe@email.com',
   firstName: 'Shawn',
   lastName: 'Doe',
@@ -50,6 +51,8 @@ function reducer(state: any, action: { type: any; payload: any; }) {
       return { ...state, caregiver: action.payload };
     case 'SET_GOALS':
       return { ...state, goals: action.payload };
+    case 'SET_DIFFICULTY':
+      return { ...state, difficulty: action.payload };
     case 'LOGOUT':
       return initialState;
     default:
