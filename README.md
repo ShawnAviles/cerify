@@ -4,7 +4,7 @@
 
 Pronunciation: _sehr·rih·fai_
 
-![Static Badge](https://img.shields.io/badge/Best_use_of_MongoDB_Atlas-darkgreen?label=HackRU%20F2024%20WINNER&labelColor=gold&link=https://devpost.com/software/cerify)
+![Static Badge](https://img.shields.io/badge/_Best_use_of_MongoDB_Atlas-darkgreen?label=HackRU%20F2024%20WINNER&labelColor=gold&link=https://devpost.com/software/cerify)
 
 ## Overview
 
@@ -33,10 +33,7 @@ https://github.com/user-attachments/assets/513507b4-13e8-4ef8-bcfe-401fd8b5e796
 
 ### Some Screens
 
-<img src="/client/demo/Home.png" data-canonical src="/client/demo/Home.png" width="300" />
-<img src="/client/demo/MatchMaking.png" data-canonical src="/client/demo/MatchMaking.png" width="300" />
-<img src="/client/demo/Whack.png" data-canonical src="/client/demo/Whack.png" width="300" />
-<img src="/client/demo/Stats.png" data-canonical src="/client/demo/Stats.png" width="300" />
+<img src="/client/demo/Home.png" data-canonical src="/client/demo/Home.png" width="200" /> <img src="/client/demo/MatchMaking.png" data-canonical src="/client/demo/MatchMaking.png" width="200" /> <img src="/client/demo/Whack.png" data-canonical src="/client/demo/Whack.png" width="200" /> <img src="/client/demo/Stats.png" data-canonical src="/client/demo/Stats.png" width="200" />
 
 ## Key Features
 
