@@ -29,7 +29,7 @@ Cerify is a mobile app designed to help dementia patients engage in simple, stim
 
 ### Video
 
-https://github.com/user-attachments/assets/513507b4-13e8-4ef8-bcfe-401fd8b5e796
+https://github.com/user-attachments/assets/7784716a-2ebe-44a6-b6c3-c7c2b69d8b27
 
 ### Some Screens
 
