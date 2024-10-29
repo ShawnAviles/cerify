@@ -18,54 +18,41 @@ Cerify is a mobile app designed to help dementia patients engage in simple, stim
 - Justin Ferber
 - Harris Pyo
 
-[DevPost](https://devpost.com/software/cerify)
+**Artifacts**
+- [DevPost](https://devpost.com/software/cerify)
+- [Figma](https://www.figma.com/design/T56JuXsvBhtv34fjYtxCEQ/HackRU-FA24?node-id=14-39&t=jnAKeEB8PoFPzQp3-1)
+- [Pitch Deck](https://docs.google.com/presentation/d/1At7aAnCG_i7pHIjARA9nuR0Yx92IS8EFq5l7zhLY-Sw/edit?usp=sharing)
 
 ---
 
 ## Demo
 
-### Screens
+### Video
 
-![home](/client/demo/Home.png)
+https://github.com/user-attachments/assets/513507b4-13e8-4ef8-bcfe-401fd8b5e796
 
-![matchingMakingGame](/client/demo/MatchMaking.png)
+### Some Screens
 
-![whackAMole](/client/demo/Whack.png)
-
-![statistics](/client/demo/Stats.png)
-
-### Demo Video
-
-![Demo](/client/demo/Demo.mp4)
-
----
+<img src="/client/demo/Home.png" data-canonical src="/client/demo/Home.png" width="300" />
+<img src="/client/demo/MatchMaking.png" data-canonical src="/client/demo/MatchMaking.png" width="300" />
+<img src="/client/demo/Whack.png" data-canonical src="/client/demo/Whack.png" width="300" />
+<img src="/client/demo/Stats.png" data-canonical src="/client/demo/Stats.png" width="300" />
 
 ## Key Features
 
-### Cognitive Activities
-Cerify provides tailored exercises that encourage users to stay mentally active and improve specific skills. Each activity is designed with simplicity and ease of use in mind:
+- **Cognitive Activities** - Cerify provides tailored exercises that encourage users to stay mentally active and improve specific skills. Each activity is designed with simplicity and ease of use in mind:
+  - Memory Match: A card-matching game to enhance short-term and visual memory.
+  - Attention Games: A “whack-a-mole” style game that improves concentration and reaction time.
 
-- **Memory Match**: A card-matching game to enhance short-term and visual memory.
-- **Attention Games**: A “whack-a-mole” style game that improves concentration and reaction time.
+- **Progress Tracking & Analytics** - The analytics page tracks user progress, providing insights on performance over time, making it a helpful tool for caregivers and family members.
 
-### Progress Tracking & Analytics
-The analytics page tracks user progress, providing insights on performance over time, making it a helpful tool for caregivers and family members.
-
-### Daily Reminders
-Cerify sends reminders to encourage daily engagement, fostering a consistent routine that benefits cognitive health.
-
-### Adaptive Learning
-Cerify’s algorithm adjusts the difficulty of activities based on user performance, creating a personalized experience suited to each individual’s cognitive level.
-
----
+- **Daily Reminders** - Cerify sends reminders to encourage daily engagement, fostering a consistent routine that benefits cognitive health.
 
 ## Built With
 
 - **Frontend**: React Native for cross-platform compatibility
 - **Backend**: ExpressJS
 - **Database**: MongoDB Atlas
-
----
 
 ## Getting started
 
@@ -85,17 +72,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 Open the app using a [development build](https://docs.expo.dev/develop/development-builds/introduction/), [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/), [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/), or [Expo Go](https://expo.dev/go).
 
-### Development
-
 Modify files inside the **app** directory to develop the project further. This project uses [file-based routing](https://docs.expo.dev/router/introduction) for easy navigation setup.
-
----
 
 ## Challenges & Accomplishments
 
 Creating an app that balances simplicity and cognitive benefit was challenging but rewarding. We’re proud to have developed an accessible UI that meets our users’ unique needs. Additionally, our analytics feature enables caregivers to monitor cognitive progress effectively.
-
----
 
 ## Future Directions
 
