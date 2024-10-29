@@ -79,4 +79,5 @@ Creating an app that balances simplicity and cognitive benefit was challenging b
 
 - **Expanded Cognitive Activities**: Additional games targeting more brain functions, including language skills and executive function.
 - **Brain Model Visualization**: A glowing brain model that represents cognitive progress.
-- **Machine Learning Customization**: Personalized activity suggestions based on ongoing performance.
+- **Machine Learning Customization**: Personalized activity suggestions based on ongoing performance, which is stored and able to be shared with machine learning models.
+- **Patient and Caretaker Roles**: User authentication and ability for caretakers to monitor their patients' progress and adjust difficulties.
